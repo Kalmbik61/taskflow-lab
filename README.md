@@ -16,6 +16,9 @@ HTML, CSS, JavaScript (ES6+), localStorage, fetch
 
 Открыть `index.html` в браузере. Сборки и `npm install` нет.
 
+Удобнее через Live Server в VS Code: правой кнопкой по `index.html` → Open with Live Server.
+Тогда страница сама обновляется после сохранения файла.
+
 ## Ветки
 
 - `main` — рабочее приложение
