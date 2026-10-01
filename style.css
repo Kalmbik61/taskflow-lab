@@ -83,4 +83,5 @@ button:disabled { opacity: 0.5; cursor: default; }
 
 .task__title { flex: 1; overflow-wrap: anywhere; }
 
-.task--done .task__title { color: var(--color-muted); text-decoration: line-through; }
+.task--done .task__title { color: var(--color-muted); text-decoration: line-through; opacity: 0.8; }
+.task--done { background: transparent; }
