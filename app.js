@@ -23,6 +23,7 @@ const titleInput = document.querySelector('#task-title');
 const list = document.querySelector('#task-list');
 const examplesBtn = document.querySelector('#examples-btn');
 const statusText = document.querySelector('#status');
+const emptyText = document.querySelector('#empty');
 
 // ===== ХРАНИЛИЩЕ =====
 
@@ -106,6 +107,7 @@ function createTaskElement(task) {
 function render() {
   list.innerHTML = '';
   state.tasks.forEach((task) => list.append(createTaskElement(task)));
+  emptyText.hidden = state.tasks.length > 0;
 }
 
 // ===== ОБЩАЯ ТОЧКА =====
@@ -151,5 +153,4 @@ examplesBtn.addEventListener('click', async () => {
 
 // ===== СТАРТ =====
 
-state.tasks = loadTasks();
 render();
