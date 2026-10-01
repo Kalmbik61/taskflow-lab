@@ -60,6 +60,12 @@ button:focus-visible,
 
 button:disabled { opacity: 0.5; cursor: default; }
 
+/* ===== Примеры с сервера ===== */
+
+.examples { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
+
+.hint { margin: 8px 0; color: var(--color-muted); }
+
 /* ===== Список ===== */
 
 .task-list { list-style: none; padding: 0; margin: 16px 0 0; }
