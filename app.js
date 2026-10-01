@@ -133,7 +133,7 @@ list.addEventListener('click', (event) => {
   if (!button) return;
   const id = Number(button.closest('.task').dataset.id);
   if (button.dataset.action === 'toggle') toggleTask(id);
-  if (button.dataset.action === 'delete') deleteTask(id);
+  if (button.dataset.action === 'delete' && confirm('Удалить задачу?')) deleteTask(id);
 });
 
 examplesBtn.addEventListener('click', async () => {
