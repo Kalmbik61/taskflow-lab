@@ -1,7 +1,12 @@
 /*
   TaskFlow Lab — маленькая копия TaskFlow для занятий по Git.
   Задачи можно добавить, отметить выполненными и удалить.
+  Они сохраняются в localStorage.
 */
+
+// ===== КОНСТАНТЫ =====
+
+const STORAGE_KEY = 'taskflow-lab:tasks';
 
 // ===== СОСТОЯНИЕ =====
 // Одна задача: { id: 1760000000000, title: 'Купить хлеб', done: false }
@@ -15,6 +20,22 @@ const state = {
 const form = document.querySelector('#task-form');
 const titleInput = document.querySelector('#task-title');
 const list = document.querySelector('#task-list');
+
+// ===== ХРАНИЛИЩЕ =====
+
+function saveTasks() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state.tasks));
+}
+
+function loadTasks() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    return Array.isArray(saved) ? saved : [];
+  } catch (error) {
+    console.warn('Не удалось прочитать задачи из localStorage', error);
+    return [];
+  }
+}
 
 // ===== ИЗМЕНЕНИЕ СОСТОЯНИЯ =====
 // Каждая функция меняет state и вызывает update()
@@ -69,6 +90,7 @@ function render() {
 // ===== ОБЩАЯ ТОЧКА =====
 
 function update() {
+  saveTasks();
   render();
 }
 
@@ -93,4 +115,5 @@ list.addEventListener('click', (event) => {
 
 // ===== СТАРТ =====
 
+state.tasks = loadTasks();
 render();
