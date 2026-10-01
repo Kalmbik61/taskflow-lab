@@ -84,22 +84,11 @@ function createTaskElement(task) {
   const li = document.createElement('li');
   li.className = task.done ? 'task task--done' : 'task';
   li.dataset.id = task.id;
-
-  const title = document.createElement('span');
-  title.className = 'task__title';
-  title.textContent = task.title;
-
-  const toggleBtn = document.createElement('button');
-  toggleBtn.type = 'button';
-  toggleBtn.dataset.action = 'toggle';
-  toggleBtn.textContent = task.done ? 'Вернуть' : 'Готово';
-
-  const deleteBtn = document.createElement('button');
-  deleteBtn.type = 'button';
-  deleteBtn.dataset.action = 'delete';
-  deleteBtn.textContent = 'Удалить';
-
-  li.append(title, toggleBtn, deleteBtn);
+  li.innerHTML = `
+    <span class="task__title">${task.title}</span>
+    <button type="button" data-action="toggle">${task.done ? 'Вернуть' : 'Готово'}</button>
+    <button type="button" data-action="delete">Удалить</button>
+  `;
   return li;
 }
 
