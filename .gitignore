@@ -1,0 +1,13 @@
+# системное и редактор
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# окружение и секреты
+.env
+.env.local
+
+# зависимости и сборка — появятся позже
+node_modules/
+dist/
