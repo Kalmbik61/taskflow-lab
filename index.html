@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow Lab</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="app">
+    <h1 class="app__title">TaskFlow Lab</h1>
+
+    <form class="form" id="task-form">
+      <label class="visually-hidden" for="task-title">Название задачи</label>
+      <input class="form__input" id="task-title" type="text" placeholder="Что сделать?" autocomplete="off">
+      <button class="form__button" type="submit">Добавить</button>
+    </form>
+
+    <ul class="task-list" id="task-list"></ul>
+  </main>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
