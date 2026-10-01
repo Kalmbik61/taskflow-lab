@@ -14,6 +14,7 @@ const EXAMPLES_URL = 'https://jsonplaceholder.typicode.com/todos?_limit=5';
 
 const state = {
   tasks: [],
+  filter: 'all', // 'all' | 'active' | 'done'; не сохраняется
 };
 
 // ===== ЭЛЕМЕНТЫ =====
@@ -23,6 +24,8 @@ const titleInput = document.querySelector('#task-title');
 const list = document.querySelector('#task-list');
 const examplesBtn = document.querySelector('#examples-btn');
 const statusText = document.querySelector('#status');
+const filtersBox = document.querySelector('#filters');
+const emptyFilterText = document.querySelector('#empty-filter');
 
 // ===== ХРАНИЛИЩЕ =====
 
@@ -78,6 +81,17 @@ function deleteTask(id) {
   update();
 }
 
+function setFilter(filter) {
+  state.filter = filter;
+  render();
+}
+
+function getVisibleTasks() {
+  if (state.filter === 'active') return state.tasks.filter((task) => !task.done);
+  if (state.filter === 'done') return state.tasks.filter((task) => task.done);
+  return state.tasks;
+}
+
 // ===== РЕНДЕР =====
 
 function createTaskElement(task) {
@@ -103,9 +117,18 @@ function createTaskElement(task) {
   return li;
 }
 
+function renderFilters() {
+  filtersBox.querySelectorAll('button').forEach((button) => {
+    button.setAttribute('aria-pressed', String(button.dataset.filter === state.filter));
+  });
+}
+
 function render() {
+  const visible = getVisibleTasks();
   list.innerHTML = '';
-  state.tasks.forEach((task) => list.append(createTaskElement(task)));
+  visible.forEach((task) => list.append(createTaskElement(task)));
+  emptyFilterText.hidden = visible.length > 0 || state.tasks.length === 0;
+  renderFilters();
 }
 
 // ===== ОБЩАЯ ТОЧКА =====
@@ -132,6 +155,12 @@ list.addEventListener('click', (event) => {
   const id = Number(button.closest('.task').dataset.id);
   if (button.dataset.action === 'toggle') toggleTask(id);
   if (button.dataset.action === 'delete') deleteTask(id);
+});
+
+filtersBox.addEventListener('click', (event) => {
+  const button = event.target.closest('button');
+  if (!button) return;
+  setFilter(button.dataset.filter);
 });
 
 examplesBtn.addEventListener('click', async () => {

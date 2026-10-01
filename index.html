@@ -21,6 +21,13 @@
       <p class="hint" id="status" role="status"></p>
     </div>
 
+    <div class="filters" id="filters">
+      <button class="filters__button" type="button" data-filter="all" aria-pressed="true">Все</button>
+      <button class="filters__button" type="button" data-filter="active" aria-pressed="false">Активные</button>
+      <button class="filters__button" type="button" data-filter="done" aria-pressed="false">Выполненные</button>
+    </div>
+    <p class="hint" id="empty-filter" hidden>Под этот фильтр задач нет.</p>
+
     <ul class="task-list" id="task-list"></ul>
   </main>
 
