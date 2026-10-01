@@ -66,6 +66,12 @@ button:disabled { opacity: 0.5; cursor: default; }
 
 .hint { margin: 8px 0; color: var(--color-muted); }
 
+/* ===== Фильтр ===== */
+
+.filters { display: flex; gap: 8px; margin-top: 16px; }
+
+.filters__button--active { background: var(--color-accent); color: #fff; }
+
 /* ===== Список ===== */
 
 .task-list { list-style: none; padding: 0; margin: 16px 0 0; }

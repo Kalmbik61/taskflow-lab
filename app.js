@@ -116,6 +116,7 @@ function update() {
 }
 
 // ===== ОБРАБОТЧИКИ =====
+// TODO: фильтр. Кнопки «Все / Активные / Выполненные» в #filters уже есть, логики пока нет.
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
