@@ -14,6 +14,7 @@ const EXAMPLES_URL = 'https://jsonplaceholder.typicode.com/todos?_limit=5';
 
 const state = {
   tasks: [],
+  filter: 'all',
 };
 
 // ===== ЭЛЕМЕНТЫ =====
@@ -23,6 +24,8 @@ const titleInput = document.querySelector('#task-title');
 const list = document.querySelector('#task-list');
 const examplesBtn = document.querySelector('#examples-btn');
 const statusText = document.querySelector('#status');
+const filters = document.querySelector('#task-filters');
+const emptyTasks = document.querySelector('#empty-tasks');
 
 // ===== ХРАНИЛИЩЕ =====
 
@@ -104,8 +107,19 @@ function createTaskElement(task) {
 }
 
 function render() {
+  const active = state.tasks.filter((task) => !task.done);
+  const done = state.tasks.filter((task) => task.done);
+  const groups = { all: state.tasks, active, done };
+  const labels = { all: 'Все', active: 'Активные', done: 'Выполненные' };
+  for (const button of filters.querySelectorAll('button')) {
+    const key = button.dataset.filter;
+    button.textContent = `${labels[key]} (${groups[key].length})`;
+    button.setAttribute('aria-pressed', String(key === state.filter));
+  }
+  const visible = groups[state.filter];
+  emptyTasks.hidden = visible.length > 0;
   list.innerHTML = '';
-  state.tasks.forEach((task) => list.append(createTaskElement(task)));
+  visible.forEach((task) => list.append(createTaskElement(task)));
 }
 
 // ===== ОБЩАЯ ТОЧКА =====
@@ -116,6 +130,13 @@ function update() {
 }
 
 // ===== ОБРАБОТЧИКИ =====
+
+filters.addEventListener('click', (event) => {
+  const button = event.target.closest('button[data-filter]');
+  if (!button) return;
+  state.filter = button.dataset.filter;
+  render();
+});
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();

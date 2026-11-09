@@ -68,6 +68,9 @@ button:disabled { opacity: 0.5; cursor: default; }
 
 /* ===== Список ===== */
 
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.filters button[aria-pressed="true"] { background: var(--color-accent); color: #fff; }
+
 .task-list { list-style: none; padding: 0; margin: 16px 0 0; }
 
 .task {

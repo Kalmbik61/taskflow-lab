@@ -21,6 +21,12 @@
       <p class="hint" id="status" role="status"></p>
     </div>
 
+    <div class="filters" id="task-filters" role="group" aria-label="Фильтр задач">
+      <button type="button" data-filter="all" aria-pressed="true">Все (0)</button>
+      <button type="button" data-filter="active" aria-pressed="false">Активные (0)</button>
+      <button type="button" data-filter="done" aria-pressed="false">Выполненные (0)</button>
+    </div>
+    <p class="hint" id="empty-tasks" role="status" hidden>В этом списке пока нет задач.</p>
     <ul class="task-list" id="task-list"></ul>
   </main>
 
